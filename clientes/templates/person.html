@@ -3,16 +3,31 @@
 {% block title %}Clientes{% endblock %}
 
 {% block main %}
-    <p>Olá, {{ user.username }}</p>
-    <a href="{% url 'logout' %}">Sair</a>
+    <div class="row">
+        <div class="col"></div>
 
-    <ul>
-        {% for pessoa in pessoas %}
-        <li>
-            <a href="{% url 'pessoa_update' pessoa.id %}">{{ pessoa.first_name }}
-            <a class="btn btn-danger" href="{% url 'pessoa_delete' pessoa.id %}">Deletar</a></a>
-        </li>
-        {% endfor %}
-    </ul>
-    <a class="btn btn-primary" href="{% url 'pessoa_new' %}">Adicionar</a>
+        <div class="col-6">
+            <ul class="list-group">
+                {% for pessoa in pessoas %}
+                    <li class="list-group-item">
+                        <a href="{% url 'pessoa_update' pessoa.id %}">
+                            {{ pessoa.first_name }}
+                        </a>
+                        <a href="{% url 'pessoa_delete' pessoa.id %}">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <a class="btn btn-primary" href="{% url 'pessoa_new' %}">Adicionar</a>
+        </div>
+
+        <div class="col">
+            <p>
+                Olá, {{ user.username }}
+                <a class="btn btn-info" href="{% url 'logout' %}">Sair</a>
+            </p>
+        </div>
+    </div>
 {% endblock %}
