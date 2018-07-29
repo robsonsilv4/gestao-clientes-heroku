@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from decouple import config
+from dj_database_url import dburl
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,12 +21,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8*5-d2d^i2v)^l!61f_7)w_zj42hsa%87l4#wf=(#sbsw4q836'
+SECRET_KEY = config('SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=false, cast=bool)
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-heroku.herokuapp.com']
 
 # Application definition
 
@@ -72,13 +75,9 @@ WSGI_APPLICATION = 'gestao_clientes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+default_dburl = 'sqlite:////' + os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
-    'default': {
-        'NAME': 'django-heroku',
-        'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'postgres',
-        'PASSWORD': ''
-    }
+    'default': config('DATABASE_URL', deafault=default_dburl, cast=dburl)
 }
 
 # Password validation
@@ -122,3 +121,5 @@ MEDIA_ROOT = 'media'
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = 'pessoa_list'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

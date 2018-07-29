@@ -1,0 +1,5 @@
+django
+Pillow
+python-decouple
+dj-database-url
+dj-static
