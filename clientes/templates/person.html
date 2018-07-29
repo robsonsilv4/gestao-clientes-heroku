@@ -8,6 +8,8 @@
     <title>Pessoas</title>
 </head>
 <body>
+    <a href="{% url 'logout' %}">Sair</a>
+
     <ul>
         {% for pessoa in pessoas %}
             <li><a href="{% url 'pessoa_update' pessoa.id %}">{{ pessoa.first_name }}</a></li>
