@@ -26,8 +26,7 @@ SECRET_KEY = config('SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=false, cast=bool)
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['django-heroku.herokuapp.com']
+ALLOWED_HOSTS = ['django-heroku.herokuapp.com', 'localhost']
 
 # Application definition
 
