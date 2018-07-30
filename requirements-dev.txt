@@ -4,3 +4,5 @@ python-decouple
 dj-database-url
 dj-static
 django-bootstrap-form
+django-storages
+boto3
