@@ -1,4 +1,6 @@
+*.idea
 *idea
+*.pyc
 *pyc
 *sqlite3
 media
