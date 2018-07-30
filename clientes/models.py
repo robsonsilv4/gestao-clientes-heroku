@@ -21,11 +21,21 @@ class Pessoa(models.Model):
         return self.first_name + ' ' + self.last_name
 
 
+class Produto(models.Model):
+    descricao = models.CharField(max_length=45)
+    preco = models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+        return self.descricao
+
+
 class Venda(models.Model):
     numero = models.IntegerField(unique=True)
     valor = models.DecimalField(max_digits=5, decimal_places=2)
+    desconto = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     imposto = models.DecimalField(max_digits=5, decimal_places=2)
     pessoa = models.ForeignKey(Pessoa, null=True, blank=True, on_delete=models.PROTECT)
+    produtos = models.ManyToManyField(Produto, blank=True)
 
     def __str__(self):
         return str(self.numero)
