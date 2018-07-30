@@ -3,7 +3,7 @@ from django.db import models
 
 class Documento(models.Model):
     num_doc = models.CharField(max_length=14)
-    
+
     def __str__(self):
         return self.num_doc
 
@@ -19,3 +19,13 @@ class Pessoa(models.Model):
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
+
+
+class Venda(models.Model):
+    numero = models.IntegerField(unique=True)
+    valor = models.DecimalField(max_digits=5, decimal_places=2)
+    imposto = models.DecimalField(max_digits=5, decimal_places=2)
+    pessoa = models.ForeignKey(Pessoa, null=True, blank=True, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return str(self.numero)
